@@ -1,0 +1,41 @@
+====
+Strings
+====
+
+@ 
+@x
+
+"@"
+"hello\nworld"
+"quoth the raven \"nevermore\"!"
+
+$ multiline
+$ is cool
+
+$ multiline
+$ is cool
+$ -er with three lines
+
+@\n
+@\x27
+@\u2665
+@\u{1f600}
+
+---
+
+(source_file
+  (literal (char))
+  (literal (char))
+
+  (literal (string))
+  (literal (string (escape)))
+  (literal (string (escape) (escape)))
+
+  (literal (string (multiline_string)))
+  (literal (string (multiline_string)))
+
+  (literal (char (escape)))
+  (literal (char (escape)))
+  (literal (char (escape)))
+  (literal (char (escape)))
+)

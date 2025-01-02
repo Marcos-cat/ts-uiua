@@ -1,0 +1,19 @@
+====
+Numbers
+====
+
+123
+`13.4
+π/4
+¯∞
+0.3e9
+
+---
+
+(source_file
+  (literal (number (integer)))
+  (literal (number (decimal)))
+  (literal (number (fraction (constant) (integer))))
+  (literal (number (constant)))
+  (literal (number (scientific)))
+)

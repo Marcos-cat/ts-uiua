@@ -1,0 +1,40 @@
+====
+Arrays
+====
+
+8_8.7_2/10
+
+{"string" 888 @3}
+
+[2_3 6_7 0_5]
+
+---
+
+(source_file
+  (strand
+    (literal (number (integer)))
+    (literal (number (decimal)))
+    (literal (number (fraction)))
+  )
+
+  (box_array
+    (literal (string))
+    (literal (number (integer)))
+    (literal (char))
+  )
+
+  (array
+    (strand
+      (literal (number (integer)))
+      (literal (number (integer)))
+    )
+    (strand
+      (literal (number (integer)))
+      (literal (number (integer)))
+    )
+    (strand
+      (literal (number (integer)))
+      (literal (number (integer)))
+    )
+  )
+)
