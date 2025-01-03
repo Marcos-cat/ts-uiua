@@ -95,6 +95,10 @@
         {
           "type": "SYMBOL",
           "name": "prim"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modifier_function"
         }
       ]
     },
@@ -398,9 +402,222 @@
           {
             "type": "STRING",
             "value": "⊗"
+          },
+          {
+            "type": "STRING",
+            "value": "⍤"
           }
         ]
       }
+    },
+    "_modifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "monadic_modifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dyadic_modifier"
+        }
+      ]
+    },
+    "monadic_modifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/"
+          },
+          {
+            "type": "STRING",
+            "value": "∧"
+          },
+          {
+            "type": "STRING",
+            "value": "\\"
+          },
+          {
+            "type": "STRING",
+            "value": "∵"
+          },
+          {
+            "type": "STRING",
+            "value": "≡"
+          },
+          {
+            "type": "STRING",
+            "value": "⍚"
+          },
+          {
+            "type": "STRING",
+            "value": "⊞"
+          },
+          {
+            "type": "STRING",
+            "value": "⧅"
+          },
+          {
+            "type": "STRING",
+            "value": "⧈"
+          },
+          {
+            "type": "STRING",
+            "value": "⍥"
+          },
+          {
+            "type": "STRING",
+            "value": "⊕"
+          },
+          {
+            "type": "STRING",
+            "value": "⊜"
+          },
+          {
+            "type": "STRING",
+            "value": "◇"
+          },
+          {
+            "type": "STRING",
+            "value": "⋅"
+          },
+          {
+            "type": "STRING",
+            "value": "⊙"
+          },
+          {
+            "type": "STRING",
+            "value": "⟜"
+          },
+          {
+            "type": "STRING",
+            "value": "⊸"
+          },
+          {
+            "type": "STRING",
+            "value": "⤙"
+          },
+          {
+            "type": "STRING",
+            "value": "⤚"
+          },
+          {
+            "type": "STRING",
+            "value": "◡"
+          },
+          {
+            "type": "STRING",
+            "value": "∩"
+          },
+          {
+            "type": "STRING",
+            "value": "⌅"
+          },
+          {
+            "type": "STRING",
+            "value": "°"
+          },
+          {
+            "type": "STRING",
+            "value": "⌝"
+          },
+          {
+            "type": "STRING",
+            "value": "⍩"
+          }
+        ]
+      }
+    },
+    "dyadic_modifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "⍜"
+          },
+          {
+            "type": "STRING",
+            "value": "⊃"
+          },
+          {
+            "type": "STRING",
+            "value": "⊓"
+          },
+          {
+            "type": "STRING",
+            "value": "⍢"
+          },
+          {
+            "type": "STRING",
+            "value": "⬚"
+          },
+          {
+            "type": "STRING",
+            "value": "⨬"
+          },
+          {
+            "type": "STRING",
+            "value": "⍣"
+          }
+        ]
+      }
+    },
+    "modifier_function": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "monadic_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_function"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_function"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_pack"
+            }
+          ]
+        }
+      ]
+    },
+    "function_pack": {
+      "type": "STRING",
+      "value": ")"
     },
     "identifier": {
       "type": "STRING",

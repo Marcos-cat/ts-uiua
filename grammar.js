@@ -1,7 +1,10 @@
-const stack_prims = '.,:◌∘?'.split('');
-const noadic_prims = ['⚂'];
-const monadic_prims = '¬±¯⌵√∿⌊⌈⁅⧻△⇡⊢⊣⇌♭¤⋯⍉⍆⍏⍖⊚⊛◴◰□⋕'.split('');
-const dyadic_prims = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗'.split('');
+const stack_primitives = '.,:◌∘?'.split('');
+const noadic_primitives = ['⚂'];
+const monadic_primitives = '¬±¯⌵√∿⌊⌈⁅⧻△⇡⊢⊣⇌♭¤⋯⍉⍆⍏⍖⊚⊛◴◰□⋕'.split('');
+const dyadic_primitives = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗⍤'.split('');
+
+const monadic_modifiers = '/∧\\∵≡⍚⊞⧅⧈⍥⊕⊜◇⋅⊙⟜⊸⤙⤚◡∩⌅°⌝⍩'.split('');
+const dyadic_modifiers = '⍜⊃⊓⍢⬚⨬⍣'.split('');
 
 module.exports = grammar({
     name: 'uiua',
@@ -36,16 +39,32 @@ module.exports = grammar({
                 $.array,
                 $.box_array,
                 $.strand,
-                $.prim,
+                $.primitive,
+                $.modifier_function,
             ), // TODO
 
-        prim: $ =>
-            choice($.stack_prim, $.noadic_prim, $.monadic_prim, $.dyadic_prim),
+        primitive: $ =>
+            choice($.stack_primitive, $.noadic_primitive, $.monadic_primitive, $.dyadic_primitive),
 
-        stack_prim: _ => token(choice(...stack_prims)),
-        noadic_prim: _ => token(...noadic_prims),
-        monadic_prim: _ => token(choice(...monadic_prims)),
-        dyadic_prim: _ => token(choice(...dyadic_prims)),
+        stack_primitive: _ => token(choice(...stack_primitives)),
+        noadic_primitive: _ => token(...noadic_primitives),
+        monadic_primitive: _ => token(choice(...monadic_primitives)),
+        dyadic_primitive: _ => token(choice(...dyadic_primitives)),
+
+        _modifier: $ => choice($.monadic_modifier, $.dyadic_modifier),
+        monadic_modifier: _ => token(choice(...monadic_modifiers)),
+        dyadic_modifier: _ => token(choice(...dyadic_modifiers)),
+
+        modifier_function: $ =>
+            choice(
+                seq($.monadic_modifier, $._function),
+                seq($.dyadic_modifier, $._function, $._function),
+                seq($._modifier, $.function_pack),
+            ),
+
+        function_pack: $ => (
+            '(', $._function_body, repeat1(seq('|', $._function_body)), ')'
+        ),
 
         identifier: $ => 'todo ident',
 
@@ -56,7 +75,7 @@ module.exports = grammar({
         box_array: $ => seq('{', optional($._function_body), '}'),
         strand: $ =>
             prec.left(seq($._strand_item, repeat1(seq('_', $._strand_item)))),
-        _strand_item: $ => choice($.literal, $.prim, $.identifier),
+        _strand_item: $ => choice($.literal, $.primitive, $.identifier),
 
         literal: $ => choice($.number, $.string, $.char), // TODO
 

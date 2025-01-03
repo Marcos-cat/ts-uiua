@@ -53,8 +53,8 @@ Arrays
   )
 
   (array
-    (prim (dyadic_prim))
-    (prim (dyadic_prim))
+    (primitive (dyadic_primitive))
+    (primitive (dyadic_primitive))
     (literal (number (integer)))
   )
   (literal (number (integer)))

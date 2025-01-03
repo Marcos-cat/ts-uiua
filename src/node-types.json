@@ -24,6 +24,10 @@
           "named": true
         },
         {
+          "type": "modifier_function",
+          "named": true
+        },
+        {
           "type": "prim",
           "named": true
         },
@@ -56,6 +60,10 @@
         },
         {
           "type": "literal",
+          "named": true
+        },
+        {
+          "type": "modifier_function",
           "named": true
         },
         {
@@ -109,6 +117,11 @@
     }
   },
   {
+    "type": "function_pack",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "inline_function",
     "named": true,
     "fields": {},
@@ -130,6 +143,10 @@
         },
         {
           "type": "literal",
+          "named": true
+        },
+        {
+          "type": "modifier_function",
           "named": true
         },
         {
@@ -161,6 +178,57 @@
         },
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modifier_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "box_array",
+          "named": true
+        },
+        {
+          "type": "dyadic_modifier",
+          "named": true
+        },
+        {
+          "type": "function_pack",
+          "named": true
+        },
+        {
+          "type": "inline_function",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "modifier_function",
+          "named": true
+        },
+        {
+          "type": "monadic_modifier",
+          "named": true
+        },
+        {
+          "type": "prim",
+          "named": true
+        },
+        {
+          "type": "strand",
           "named": true
         }
       ]
@@ -260,6 +328,10 @@
         },
         {
           "type": "literal",
+          "named": true
+        },
+        {
+          "type": "modifier_function",
           "named": true
         },
         {
@@ -368,6 +440,10 @@
     "named": true
   },
   {
+    "type": "dyadic_modifier",
+    "named": true
+  },
+  {
     "type": "dyadic_prim",
     "named": true
   },
@@ -385,6 +461,10 @@
   },
   {
     "type": "module",
+    "named": true
+  },
+  {
+    "type": "monadic_modifier",
     "named": true
   },
   {

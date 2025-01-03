@@ -1,0 +1,24 @@
+====
+Modifiers
+====
+
+≡(+⇌.)
+\+ 1_2
+
+---
+
+(source_file
+  (modifier_function
+    (monadic_modifier)
+    (inline_function
+      (primitive (dyadic_primitive))
+      (primitive (monadic_primitive))
+      (primitive (stack_primitive))
+    )
+  )
+
+  (modifier_function
+    (monadic_modifier)
+    (primitive (dyadic_primitive))
+  )
+)

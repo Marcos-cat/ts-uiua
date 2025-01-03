@@ -1,5 +1,5 @@
 ====
-Primitives
+primitiveitives
 ====
 
 √+ ? .+ ? 1 ×3 4
@@ -10,18 +10,18 @@ Primitives
 ---
 
 (source_file
-  (prim (monadic_prim))  
-  (prim (dyadic_prim))  
-  (prim (stack_prim))  
-  (prim (stack_prim))  
-  (prim (dyadic_prim))  
-  (prim (stack_prim))  
+  (primitive (monadic_primitive))  
+  (primitive (dyadic_primitive))  
+  (primitive (stack_primitive))  
+  (primitive (stack_primitive))  
+  (primitive (dyadic_primitive))  
+  (primitive (stack_primitive))  
   (literal (number (integer)))
-  (prim (dyadic_prim))  
+  (primitive (dyadic_primitive))  
   (literal (number (integer)))
   (literal (number (integer)))
 
-  (prim (dyadic_prim))
+  (primitive (dyadic_primitive))
   (literal (number (integer)))
   (literal (number (integer)))
   (literal (char))
