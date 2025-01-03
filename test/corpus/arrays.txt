@@ -8,13 +8,17 @@ Arrays
 
 [2_3 6_7 0_5]
 
+[{"hello" "world"} 1 2 3]
+
+[+×2] 20 2
+
 ---
 
 (source_file
   (strand
     (literal (number (integer)))
     (literal (number (decimal)))
-    (literal (number (fraction)))
+    (literal (number (fraction (integer) (integer))))
   )
 
   (box_array
@@ -37,4 +41,22 @@ Arrays
       (literal (number (integer)))
     )
   )
+
+  (array
+    (box_array
+      (literal (string))
+      (literal (string))
+    )
+    (literal (number (integer)))
+    (literal (number (integer)))
+    (literal (number (integer)))
+  )
+
+  (array
+    (prim (dyadic_prim))
+    (prim (dyadic_prim))
+    (literal (number (integer)))
+  )
+  (literal (number (integer)))
+  (literal (number (integer)))
 )

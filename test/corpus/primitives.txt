@@ -1,0 +1,29 @@
+====
+Primitives
+====
+
+√+ ? .+ ? 1 ×3 4
+
+÷2 8 # Line
+@x # these
+1 # up
+---
+
+(source_file
+  (prim (monadic_prim))  
+  (prim (dyadic_prim))  
+  (prim (stack_prim))  
+  (prim (stack_prim))  
+  (prim (dyadic_prim))  
+  (prim (stack_prim))  
+  (literal (number (integer)))
+  (prim (dyadic_prim))  
+  (literal (number (integer)))
+  (literal (number (integer)))
+
+  (prim (dyadic_prim))
+  (literal (number (integer)))
+  (literal (number (integer)))
+  (literal (char))
+  (literal (number (integer)))
+)
