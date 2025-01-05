@@ -21,4 +21,53 @@ Modifiers
     (monadic_modifier)
     (primitive (dyadic_primitive))
   )
+  (strand
+    (literal (number (integer)))
+    (literal (number (integer)))
+  )
+)
+
+====
+Nested
+====
+
+°⍜≡⇌(⤸2)
+
+---
+
+(source_file
+  (modifier_function
+    (monadic_modifier)
+    (modifier_function
+      (dyadic_modifier)
+      (modifier_function (monadic_modifier) (primitive (monadic_primitive)))
+      (inline_function
+        (primitive (dyadic_primitive))
+        (literal (number (integer)))
+      )
+    )
+  )
+)
+
+====
+Function Pack
+====
+
+⊃(⊃(/+|\×)⊟|-|×) 3 4
+
+---
+
+(source_file
+  (modifier_function
+    (dyadic_modifier)
+    (function_pack
+      (modifier_function
+        (dyadic_modifier)
+        (function_pack
+          (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
+          (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
+        )
+      )
+    )
+  )
 )

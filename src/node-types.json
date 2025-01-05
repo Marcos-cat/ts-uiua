@@ -28,7 +28,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         },
         {
@@ -67,7 +67,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         },
         {
@@ -119,7 +119,41 @@
   {
     "type": "function_pack",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "box_array",
+          "named": true
+        },
+        {
+          "type": "inline_function",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "modifier_function",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "strand",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "inline_function",
@@ -150,7 +184,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         },
         {
@@ -224,7 +258,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         },
         {
@@ -271,7 +305,7 @@
     }
   },
   {
-    "type": "prim",
+    "type": "primitive",
     "named": true,
     "fields": {},
     "children": {
@@ -279,19 +313,19 @@
       "required": true,
       "types": [
         {
-          "type": "dyadic_prim",
+          "type": "dyadic_primitive",
           "named": true
         },
         {
-          "type": "monadic_prim",
+          "type": "monadic_primitive",
           "named": true
         },
         {
-          "type": "noadic_prim",
+          "type": "noadic_primitive",
           "named": true
         },
         {
-          "type": "stack_prim",
+          "type": "stack_primitive",
           "named": true
         }
       ]
@@ -339,7 +373,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         },
         {
@@ -366,7 +400,7 @@
           "named": true
         },
         {
-          "type": "prim",
+          "type": "primitive",
           "named": true
         }
       ]
@@ -444,7 +478,7 @@
     "named": true
   },
   {
-    "type": "dyadic_prim",
+    "type": "dyadic_primitive",
     "named": true
   },
   {
@@ -468,11 +502,11 @@
     "named": true
   },
   {
-    "type": "monadic_prim",
+    "type": "monadic_primitive",
     "named": true
   },
   {
-    "type": "noadic_prim",
+    "type": "noadic_primitive",
     "named": true
   },
   {
@@ -480,11 +514,15 @@
     "named": true
   },
   {
-    "type": "stack_prim",
+    "type": "stack_primitive",
     "named": true
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

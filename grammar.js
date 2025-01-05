@@ -9,20 +9,23 @@ const dyadic_modifiers = '⍜⊃⊓⍢⬚⨬⍣'.split('');
 module.exports = grammar({
     name: 'uiua',
     extras: $ => [/[ \t]+/, /#[^\n]*/],
+    conflicts: $ => [[$.source_file]],
 
     rules: {
-        source_file: $ => repeat($._top_level),
+        source_file: $ =>
+            seq(
+                repeat($._newline),
+                optional(
+                    seq(
+                        $._top_level,
+                        repeat(seq(repeat1($._newline), $._top_level)),
+                    ),
+                ),
+                repeat($._newline),
+            ),
 
         _top_level: $ =>
-            prec.right(
-                choice(
-                    $.binding,
-                    $.import,
-                    $.module,
-                    $._function,
-                    repeat1($._newline),
-                ),
-            ),
+            choice($.binding, $.import, $.module, repeat1($._function)),
 
         _newline: _ => token(choice('\n', '\r\n')),
 
@@ -44,14 +47,18 @@ module.exports = grammar({
             ), // TODO
 
         primitive: $ =>
-            choice($.stack_primitive, $.noadic_primitive, $.monadic_primitive, $.dyadic_primitive),
+            choice(
+                $.stack_primitive,
+                $.noadic_primitive,
+                $.monadic_primitive,
+                $.dyadic_primitive,
+            ),
 
         stack_primitive: _ => token(choice(...stack_primitives)),
         noadic_primitive: _ => token(...noadic_primitives),
         monadic_primitive: _ => token(choice(...monadic_primitives)),
         dyadic_primitive: _ => token(choice(...dyadic_primitives)),
 
-        _modifier: $ => choice($.monadic_modifier, $.dyadic_modifier),
         monadic_modifier: _ => token(choice(...monadic_modifiers)),
         dyadic_modifier: _ => token(choice(...dyadic_modifiers)),
 
@@ -59,12 +66,19 @@ module.exports = grammar({
             choice(
                 seq($.monadic_modifier, $._function),
                 seq($.dyadic_modifier, $._function, $._function),
-                seq($._modifier, $.function_pack),
+                seq(
+                    choice($.monadic_modifier, $.dyadic_modifier),
+                    $.function_pack,
+                ),
             ),
 
-        function_pack: $ => (
-            '(', $._function_body, repeat1(seq('|', $._function_body)), ')'
-        ),
+        function_pack: $ =>
+            seq(
+                '(',
+                $._function_body,
+                repeat1(seq('|', $._function_body)),
+                ')',
+            ),
 
         identifier: $ => 'todo ident',
 

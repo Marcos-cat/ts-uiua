@@ -1,16 +1,8 @@
 ====
-Arrays
+Strands
 ====
 
 8_8.7_2/10
-
-{"string" 888 @3}
-
-[2_3 6_7 0_5]
-
-[{"hello" "world"} 1 2 3]
-
-[+×2] 20 2
 
 ---
 
@@ -20,13 +12,35 @@ Arrays
     (literal (number (decimal)))
     (literal (number (fraction (integer) (integer))))
   )
+)
 
+====
+Box Array
+====
+
+{"string" 888 @3}
+
+---
+
+(source_file
   (box_array
     (literal (string))
     (literal (number (integer)))
     (literal (char))
   )
+)
 
+====
+Nested Arrays
+====
+
+[2_3 6_7 0_5]
+
+[{"hello" "world"} 1 2 3]
+
+---
+
+(source_file
   (array
     (strand
       (literal (number (integer)))
@@ -51,7 +65,17 @@ Arrays
     (literal (number (integer)))
     (literal (number (integer)))
   )
+)
 
+====
+Functions in Arrays
+====
+
+[+×2] 20 2
+
+---
+
+(source_file
   (array
     (primitive (dyadic_primitive))
     (primitive (dyadic_primitive))

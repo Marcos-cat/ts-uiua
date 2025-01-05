@@ -3,43 +3,83 @@
   "name": "uiua",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_top_level"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_newline"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_top_level"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "REPEAT1",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_newline"
+                        }
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_top_level"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_newline"
+          }
+        }
+      ]
     },
     "_top_level": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "binding"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "import"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "module"
-          },
-          {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "binding"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "module"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
             "type": "SYMBOL",
             "name": "_function"
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_newline"
-            }
           }
-        ]
-      }
+        }
+      ]
     },
     "_newline": {
       "type": "TOKEN",
@@ -94,7 +134,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "prim"
+          "name": "primitive"
         },
         {
           "type": "SYMBOL",
@@ -102,28 +142,28 @@
         }
       ]
     },
-    "prim": {
+    "primitive": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "stack_prim"
+          "name": "stack_primitive"
         },
         {
           "type": "SYMBOL",
-          "name": "noadic_prim"
+          "name": "noadic_primitive"
         },
         {
           "type": "SYMBOL",
-          "name": "monadic_prim"
+          "name": "monadic_primitive"
         },
         {
           "type": "SYMBOL",
-          "name": "dyadic_prim"
+          "name": "dyadic_primitive"
         }
       ]
     },
-    "stack_prim": {
+    "stack_primitive": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -155,14 +195,14 @@
         ]
       }
     },
-    "noadic_prim": {
+    "noadic_primitive": {
       "type": "TOKEN",
       "content": {
         "type": "STRING",
         "value": "⚂"
       }
     },
-    "monadic_prim": {
+    "monadic_primitive": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -282,7 +322,7 @@
         ]
       }
     },
-    "dyadic_prim": {
+    "dyadic_primitive": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -409,19 +449,6 @@
           }
         ]
       }
-    },
-    "_modifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "monadic_modifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dyadic_modifier"
-        }
-      ]
     },
     "monadic_modifier": {
       "type": "TOKEN",
@@ -604,8 +631,17 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_modifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "monadic_modifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dyadic_modifier"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -616,8 +652,37 @@
       ]
     },
     "function_pack": {
-      "type": "STRING",
-      "value": ")"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_function_body"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_function_body"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "identifier": {
       "type": "STRING",
@@ -752,7 +817,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "prim"
+          "name": "primitive"
         },
         {
           "type": "SYMBOL",
@@ -987,7 +1052,11 @@
       "value": "#[^\\n]*"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "source_file"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],
