@@ -4,6 +4,21 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "body",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": true,
       "required": false,
       "types": [
@@ -43,35 +58,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "box_array",
-          "named": true
-        },
-        {
-          "type": "inline_function",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "modifier_function",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "strand",
+          "type": "body",
           "named": true
         }
       ]
@@ -122,34 +113,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "box_array",
-          "named": true
-        },
-        {
-          "type": "inline_function",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "modifier_function",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "strand",
+          "type": "body",
           "named": true
         }
       ]
@@ -160,35 +127,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "box_array",
-          "named": true
-        },
-        {
-          "type": "inline_function",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "modifier_function",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "strand",
+          "type": "body",
           "named": true
         }
       ]

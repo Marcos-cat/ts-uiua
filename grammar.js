@@ -1,7 +1,37 @@
 const stack_primitives = '.,:◌∘?'.split('');
 const noadic_primitives = ['⚂'];
 const monadic_primitives = '¬±¯⌵√∿⌊⌈⁅⧻△⇡⊢⊣⇌♭¤⋯⍉⍆⍏⍖⊚⊛◴◰□⋕'.split('');
-const dyadic_primitives = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗⍤'.split('');
+const dyadic_primitives = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊟⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗⍤'.split('');
+
+const noadic_builtins = ['tag', 'now', 'timezone'];
+const monadic_builtins = [
+    'wait',
+    'recv',
+    'tryrecv',
+    'utf',
+    'graphemes',
+    'json',
+    'csv',
+    'xlsx',
+    'binary', // Exp
+    'type',
+    'datetime',
+    'fft', // Exp
+    'repr',
+];
+const dyadic_builtins = [
+    'base', // Exp
+    'send',
+    'map',
+    'has',
+    'get',
+    'remove',
+    'img',
+    'gif',
+    'layout', // Exp
+    'gen',
+    'regex',
+];
 
 const monadic_modifiers = '/∧\\∵≡⍚⊞⧅⧈⍥⊕⊜◇⋅⊙⟜⊸⤙⤚◡∩⌅°⌝⍩'.split('');
 const dyadic_modifiers = '⍜⊃⊓⍢⬚⨬⍣'.split('');
@@ -72,21 +102,15 @@ module.exports = grammar({
                 ),
             ),
 
-        function_pack: $ =>
-            seq(
-                '(',
-                $._function_body,
-                repeat1(seq('|', $._function_body)),
-                ')',
-            ),
+        function_pack: $ => seq('(', $.body, repeat1(seq('|', $.body)), ')'),
 
         identifier: $ => 'todo ident',
 
-        inline_function: $ => seq('(', optional($._function_body), ')'),
-        _function_body: $ => repeat1(choice($._function, $._newline)),
+        inline_function: $ => seq('(', optional($.body), ')'),
+        body: $ => repeat1(choice($._function, $._newline)),
 
-        array: $ => seq('[', optional($._function_body), ']'),
-        box_array: $ => seq('{', optional($._function_body), '}'),
+        array: $ => seq('[', optional($.body), ']'),
+        box_array: $ => seq('{', optional($.body), '}'),
         strand: $ =>
             prec.left(seq($._strand_item, repeat1(seq('_', $._strand_item)))),
         _strand_item: $ => choice($.literal, $.primitive, $.identifier),

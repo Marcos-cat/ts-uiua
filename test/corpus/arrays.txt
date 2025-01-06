@@ -23,11 +23,11 @@ Box Array
 ---
 
 (source_file
-  (box_array
+  (box_array (body
     (literal (string))
     (literal (number (integer)))
     (literal (char))
-  )
+  ))
 )
 
 ====
@@ -41,7 +41,7 @@ Nested Arrays
 ---
 
 (source_file
-  (array
+  (array (body
     (strand
       (literal (number (integer)))
       (literal (number (integer)))
@@ -54,17 +54,17 @@ Nested Arrays
       (literal (number (integer)))
       (literal (number (integer)))
     )
-  )
+  ))
 
-  (array
-    (box_array
+  (array (body
+    (box_array (body
       (literal (string))
       (literal (string))
-    )
+    ))
     (literal (number (integer)))
     (literal (number (integer)))
     (literal (number (integer)))
-  )
+  ))
 )
 
 ====
@@ -76,11 +76,11 @@ Functions in Arrays
 ---
 
 (source_file
-  (array
+  (array (body
     (primitive (dyadic_primitive))
     (primitive (dyadic_primitive))
     (literal (number (integer)))
-  )
+  ))
   (literal (number (integer)))
   (literal (number (integer)))
 )

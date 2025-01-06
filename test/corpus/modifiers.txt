@@ -8,17 +8,15 @@ Modifiers
 ---
 
 (source_file
-  (modifier_function
-    (monadic_modifier)
-    (inline_function
+  (modifier_function (monadic_modifier)
+    (inline_function (body
       (primitive (dyadic_primitive))
       (primitive (monadic_primitive))
       (primitive (stack_primitive))
-    )
+    ))
   )
 
-  (modifier_function
-    (monadic_modifier)
+  (modifier_function (monadic_modifier)
     (primitive (dyadic_primitive))
   )
   (strand
@@ -36,15 +34,13 @@ Nested
 ---
 
 (source_file
-  (modifier_function
-    (monadic_modifier)
-    (modifier_function
-      (dyadic_modifier)
+  (modifier_function (monadic_modifier)
+    (modifier_function (dyadic_modifier)
       (modifier_function (monadic_modifier) (primitive (monadic_primitive)))
-      (inline_function
+      (inline_function (body
         (primitive (dyadic_primitive))
         (literal (number (integer)))
-      )
+      ))
     )
   )
 )
@@ -58,16 +54,25 @@ Function Pack
 ---
 
 (source_file
-  (modifier_function
-    (dyadic_modifier)
+  (modifier_function (dyadic_modifier)
     (function_pack
-      (modifier_function
-        (dyadic_modifier)
-        (function_pack
-          (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
-          (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
+      (body
+        (modifier_function (dyadic_modifier)
+          (function_pack
+            (body
+              (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
+            )
+            (body
+              (modifier_function (monadic_modifier) (primitive (dyadic_primitive)))
+            )
+          )
         )
+        (primitive (dyadic_primitive))
       )
+      (body (primitive (dyadic_primitive)))
+      (body (primitive (dyadic_primitive)))
     )
   )
+  (literal (number (integer)))
+  (literal (number (integer)))
 )
