@@ -84,6 +84,29 @@
     }
   },
   {
+    "type": "dyadic_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dyadic_glyph_modifier",
+          "named": true
+        },
+        {
+          "type": "dyadic_named_modifier",
+          "named": true
+        },
+        {
+          "type": "subscript",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "escape",
     "named": true,
     "fields": {}
@@ -212,6 +235,33 @@
     }
   },
   {
+    "type": "monadic_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "monadic_glyph_modifier",
+          "named": true
+        },
+        {
+          "type": "monadic_named_modifier",
+          "named": true
+        },
+        {
+          "type": "monadic_system_modifier",
+          "named": true
+        },
+        {
+          "type": "subscript",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multiline_string",
     "named": true,
     "fields": {}
@@ -252,23 +302,59 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "dyadic_primitive",
+          "type": "dyadic_glyph",
           "named": true
         },
         {
-          "type": "monadic_primitive",
+          "type": "dyadic_named",
           "named": true
         },
         {
-          "type": "noadic_primitive",
+          "type": "dyadic_system",
           "named": true
         },
         {
-          "type": "stack_primitive",
+          "type": "monadic_glyph",
+          "named": true
+        },
+        {
+          "type": "monadic_named",
+          "named": true
+        },
+        {
+          "type": "monadic_system",
+          "named": true
+        },
+        {
+          "type": "noadic_glyph",
+          "named": true
+        },
+        {
+          "type": "noadic_named",
+          "named": true
+        },
+        {
+          "type": "noadic_system",
+          "named": true
+        },
+        {
+          "type": "stack_glyph",
+          "named": true
+        },
+        {
+          "type": "subscript",
+          "named": true
+        },
+        {
+          "type": "triadic_named",
+          "named": true
+        },
+        {
+          "type": "triadic_system",
           "named": true
         }
       ]
@@ -417,11 +503,23 @@
     "named": true
   },
   {
-    "type": "dyadic_modifier",
+    "type": "dyadic_glyph",
     "named": true
   },
   {
-    "type": "dyadic_primitive",
+    "type": "dyadic_glyph_modifier",
+    "named": true
+  },
+  {
+    "type": "dyadic_named",
+    "named": true
+  },
+  {
+    "type": "dyadic_named_modifier",
+    "named": true
+  },
+  {
+    "type": "dyadic_system",
     "named": true
   },
   {
@@ -441,15 +539,39 @@
     "named": true
   },
   {
-    "type": "monadic_modifier",
+    "type": "monadic_glyph",
     "named": true
   },
   {
-    "type": "monadic_primitive",
+    "type": "monadic_glyph_modifier",
     "named": true
   },
   {
-    "type": "noadic_primitive",
+    "type": "monadic_named",
+    "named": true
+  },
+  {
+    "type": "monadic_named_modifier",
+    "named": true
+  },
+  {
+    "type": "monadic_system",
+    "named": true
+  },
+  {
+    "type": "monadic_system_modifier",
+    "named": true
+  },
+  {
+    "type": "noadic_glyph",
+    "named": true
+  },
+  {
+    "type": "noadic_named",
+    "named": true
+  },
+  {
+    "type": "noadic_system",
     "named": true
   },
   {
@@ -457,7 +579,19 @@
     "named": true
   },
   {
-    "type": "stack_primitive",
+    "type": "stack_glyph",
+    "named": true
+  },
+  {
+    "type": "subscript",
+    "named": true
+  },
+  {
+    "type": "triadic_named",
+    "named": true
+  },
+  {
+    "type": "triadic_system",
     "named": true
   },
   {

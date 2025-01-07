@@ -7,21 +7,22 @@ Primitives
 ÷2 8 # Line
 @x # these
 1 # up
+
 ---
 
 (source_file
-  (primitive (monadic_primitive))  
-  (primitive (dyadic_primitive))  
-  (primitive (stack_primitive))  
-  (primitive (stack_primitive))  
-  (primitive (dyadic_primitive))  
-  (primitive (stack_primitive))  
+  (primitive (monadic_glyph))  
+  (primitive (dyadic_glyph))  
+  (primitive (stack_glyph))  
+  (primitive (stack_glyph))  
+  (primitive (dyadic_glyph))  
+  (primitive (stack_glyph))  
   (literal (number (integer)))
-  (primitive (dyadic_primitive))  
+  (primitive (dyadic_glyph))  
   (literal (number (integer)))
   (literal (number (integer)))
 
-  (primitive (dyadic_primitive))
+  (primitive (dyadic_glyph))
   (literal (number (integer)))
   (literal (number (integer)))
   (literal (char))

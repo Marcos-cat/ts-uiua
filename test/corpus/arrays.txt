@@ -77,8 +77,8 @@ Functions in Arrays
 
 (source_file
   (array (body
-    (primitive (dyadic_primitive))
-    (primitive (dyadic_primitive))
+    (primitive (dyadic_glyph))
+    (primitive (dyadic_glyph))
     (literal (number (integer)))
   ))
   (literal (number (integer)))

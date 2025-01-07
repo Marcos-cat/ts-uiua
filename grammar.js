@@ -1,10 +1,10 @@
-const stack_primitives = '.,:◌∘?'.split('');
-const noadic_primitives = ['⚂'];
-const monadic_primitives = '¬±¯⌵√∿⌊⌈⁅⧻△⇡⊢⊣⇌♭¤⋯⍉⍆⍏⍖⊚⊛◴◰□⋕'.split('');
-const dyadic_primitives = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊟⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗⍤'.split('');
+const stack_glyphs = '.,:◌∘?'.split('');
+const noadic_glyphs = ['⚂'];
+const monadic_glyphs = '¬±¯⌵√∿⌊⌈⁅⧻△⇡⊢⊣⇌♭¤⋯⍉⍆⍏⍖⊚⊛◴◰□⋕'.split('');
+const dyadic_glyphs = '=≠<>≥+-×÷◿ₙ↧↥∠ℂ≍⊟⊂⊏⊡↯↙↘↻⤸▽⌕⦷∊⊗⍤'.split('');
 
-const noadic_builtins = ['tag', 'now', 'timezone'];
-const monadic_builtins = [
+const noadic_nameds = ['tag', 'now', 'timezone'];
+const monadic_nameds = [
     'wait',
     'recv',
     'tryrecv',
@@ -19,7 +19,7 @@ const monadic_builtins = [
     'fft', // Exp
     'repr',
 ];
-const dyadic_builtins = [
+const dyadic_nameds = [
     'base', // Exp
     'send',
     'map',
@@ -32,13 +32,87 @@ const dyadic_builtins = [
     'gen',
     'regex',
 ];
+const triadic_nameds = ['insert', 'audio'];
 
-const monadic_modifiers = '/∧\\∵≡⍚⊞⧅⧈⍥⊕⊜◇⋅⊙⟜⊸⤙⤚◡∩⌅°⌝⍩'.split('');
-const dyadic_modifiers = '⍜⊃⊓⍢⬚⨬⍣'.split('');
+const monadic_glyph_modifiers = '/∧\\∵≡⍚⊞⧅⧈⍥⊕⊜◇⋅⊙⟜⊸⤙⤚◡∩⌅°⌝⍩'.split('');
+const dyadic_glyph_modifiers = '⍜⊃⊓⍢⬚⨬⍣'.split('');
+
+const monadic_named_modifiers = [
+    'memo',
+    'comptime',
+    'quote', // Exp
+    'dump',
+    'spawn',
+    'pool',
+];
+const dyadic_named_modifiers = ['path'];
+
+const noadic_systems = [
+    '&ts',
+    '&args',
+    '&sc',
+    '&asr',
+    '&b', // Exp
+];
+const monadic_systems = [
+    '&cd',
+    '&fo',
+    '&fc',
+    '&fmd',
+    '&fde',
+    '&ftr',
+    '&fe',
+    '&fld',
+    '&fif',
+    '&fras',
+    '&frab',
+    '&s',
+    '&pf',
+    '&p',
+    '&epf',
+    '&ep',
+    '&raw',
+    '&var',
+    '&cl',
+    '&runi',
+    '&runc',
+    '&runs',
+    '&invk',
+    '&ims',
+    '&ap',
+    '&tcpl',
+    '&tlsl', // Exp
+    '&tcpa',
+    '&tcpc',
+    '&tlsc',
+    '&tcpsnb',
+    '&tcpaddr',
+    '&memfree', // Exp
+    '&exit',
+    '&sl',
+    '&camcap',
+];
+const dyadic_systems = [
+    '&fwa',
+    '&rs',
+    '&rb',
+    '&ru',
+    '&w',
+    '&gifs',
+    '&tcpsrt',
+    '&tcpswt',
+    '&tcpswt',
+    '&ffi', // Exp
+];
+const triadic_systems = [
+    '&memcpy', // Exp
+];
+
+const monadic_system_modifiers = ['&rl', '&ast'];
 
 module.exports = grammar({
     name: 'uiua',
-    extras: $ => [/[ \t]+/, /#[^\n]*/],
+    extras: $ => [/[ \t]+/, /#[^\n\r]*/],
     conflicts: $ => [[$.source_file]],
 
     rules: {
@@ -77,20 +151,64 @@ module.exports = grammar({
             ), // TODO
 
         primitive: $ =>
-            choice(
-                $.stack_primitive,
-                $.noadic_primitive,
-                $.monadic_primitive,
-                $.dyadic_primitive,
+            seq(
+                choice(
+                    $.stack_glyph,
+                    $.noadic_glyph,
+                    $.monadic_glyph,
+                    $.dyadic_glyph,
+
+                    $.noadic_named,
+                    $.monadic_named,
+                    $.dyadic_named,
+                    $.triadic_named,
+
+                    $.noadic_system,
+                    $.monadic_system,
+                    $.dyadic_system,
+                    $.triadic_system,
+                ),
+                optional($.subscript),
             ),
 
-        stack_primitive: _ => token(choice(...stack_primitives)),
-        noadic_primitive: _ => token(...noadic_primitives),
-        monadic_primitive: _ => token(choice(...monadic_primitives)),
-        dyadic_primitive: _ => token(choice(...dyadic_primitives)),
+        stack_glyph: _ => token(choice(...stack_glyphs)),
+        noadic_glyph: _ => token(choice(...noadic_glyphs)),
+        monadic_glyph: _ => token(choice(...monadic_glyphs)),
+        dyadic_glyph: _ => token(choice(...dyadic_glyphs)),
 
-        monadic_modifier: _ => token(choice(...monadic_modifiers)),
-        dyadic_modifier: _ => token(choice(...dyadic_modifiers)),
+        noadic_named: _ => token(choice(...noadic_nameds)),
+        monadic_named: _ => token(choice(...monadic_nameds)),
+        dyadic_named: _ => token(choice(...dyadic_nameds)),
+        triadic_named: _ => token(choice(...triadic_nameds)),
+
+        noadic_system: _ => token(choice(...noadic_systems)),
+        monadic_system: _ => token(choice(...monadic_systems)),
+        dyadic_system: _ => token(choice(...dyadic_systems)),
+        triadic_system: _ => token(choice(...triadic_systems)),
+
+        monadic_glyph_modifier: _ => token(choice(...monadic_glyph_modifiers)),
+        dyadic_glyph_modifier: _ => token(choice(...dyadic_glyph_modifiers)),
+
+        monadic_named_modifier: _ => token(choice(...monadic_named_modifiers)),
+        dyadic_named_modifier: _ => token(choice(...dyadic_named_modifiers)),
+
+        monadic_system_modifier: _ =>
+            token(choice(...monadic_system_modifiers)),
+
+        monadic_modifier: $ =>
+            seq(
+                choice(
+                    $.monadic_glyph_modifier,
+                    $.monadic_named_modifier,
+                    $.monadic_system_modifier,
+                ),
+                optional($.subscript),
+            ),
+        dyadic_modifier: $ =>
+            seq(
+                choice($.dyadic_glyph_modifier, $.dyadic_named_modifier),
+                optional($.subscript),
+            ),
 
         modifier_function: $ =>
             choice(
@@ -105,6 +223,8 @@ module.exports = grammar({
         function_pack: $ => seq('(', $.body, repeat1(seq('|', $.body)), ')'),
 
         identifier: $ => 'todo ident',
+
+        subscript: $ => /₋?[₀-₉]+/,
 
         inline_function: $ => seq('(', optional($.body), ')'),
         body: $ => repeat1(choice($._function, $._newline)),

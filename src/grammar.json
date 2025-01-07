@@ -143,27 +143,76 @@
       ]
     },
     "primitive": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "stack_primitive"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "stack_glyph"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "noadic_glyph"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "monadic_glyph"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_glyph"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "noadic_named"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "monadic_named"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_named"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "triadic_named"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "noadic_system"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "monadic_system"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_system"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "triadic_system"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "noadic_primitive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "monadic_primitive"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dyadic_primitive"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subscript"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
-    "stack_primitive": {
+    "stack_glyph": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -195,14 +244,19 @@
         ]
       }
     },
-    "noadic_primitive": {
+    "noadic_glyph": {
       "type": "TOKEN",
       "content": {
-        "type": "STRING",
-        "value": "⚂"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "⚂"
+          }
+        ]
       }
     },
-    "monadic_primitive": {
+    "monadic_glyph": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -322,7 +376,7 @@
         ]
       }
     },
-    "dyadic_primitive": {
+    "dyadic_glyph": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -454,7 +508,395 @@
         ]
       }
     },
-    "monadic_modifier": {
+    "noadic_named": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "tag"
+          },
+          {
+            "type": "STRING",
+            "value": "now"
+          },
+          {
+            "type": "STRING",
+            "value": "timezone"
+          }
+        ]
+      }
+    },
+    "monadic_named": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "wait"
+          },
+          {
+            "type": "STRING",
+            "value": "recv"
+          },
+          {
+            "type": "STRING",
+            "value": "tryrecv"
+          },
+          {
+            "type": "STRING",
+            "value": "utf"
+          },
+          {
+            "type": "STRING",
+            "value": "graphemes"
+          },
+          {
+            "type": "STRING",
+            "value": "json"
+          },
+          {
+            "type": "STRING",
+            "value": "csv"
+          },
+          {
+            "type": "STRING",
+            "value": "xlsx"
+          },
+          {
+            "type": "STRING",
+            "value": "binary"
+          },
+          {
+            "type": "STRING",
+            "value": "type"
+          },
+          {
+            "type": "STRING",
+            "value": "datetime"
+          },
+          {
+            "type": "STRING",
+            "value": "fft"
+          },
+          {
+            "type": "STRING",
+            "value": "repr"
+          }
+        ]
+      }
+    },
+    "dyadic_named": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "base"
+          },
+          {
+            "type": "STRING",
+            "value": "send"
+          },
+          {
+            "type": "STRING",
+            "value": "map"
+          },
+          {
+            "type": "STRING",
+            "value": "has"
+          },
+          {
+            "type": "STRING",
+            "value": "get"
+          },
+          {
+            "type": "STRING",
+            "value": "remove"
+          },
+          {
+            "type": "STRING",
+            "value": "img"
+          },
+          {
+            "type": "STRING",
+            "value": "gif"
+          },
+          {
+            "type": "STRING",
+            "value": "layout"
+          },
+          {
+            "type": "STRING",
+            "value": "gen"
+          },
+          {
+            "type": "STRING",
+            "value": "regex"
+          }
+        ]
+      }
+    },
+    "triadic_named": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "insert"
+          },
+          {
+            "type": "STRING",
+            "value": "audio"
+          }
+        ]
+      }
+    },
+    "noadic_system": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&ts"
+          },
+          {
+            "type": "STRING",
+            "value": "&args"
+          },
+          {
+            "type": "STRING",
+            "value": "&sc"
+          },
+          {
+            "type": "STRING",
+            "value": "&asr"
+          },
+          {
+            "type": "STRING",
+            "value": "&b"
+          }
+        ]
+      }
+    },
+    "monadic_system": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&cd"
+          },
+          {
+            "type": "STRING",
+            "value": "&fo"
+          },
+          {
+            "type": "STRING",
+            "value": "&fc"
+          },
+          {
+            "type": "STRING",
+            "value": "&fmd"
+          },
+          {
+            "type": "STRING",
+            "value": "&fde"
+          },
+          {
+            "type": "STRING",
+            "value": "&ftr"
+          },
+          {
+            "type": "STRING",
+            "value": "&fe"
+          },
+          {
+            "type": "STRING",
+            "value": "&fld"
+          },
+          {
+            "type": "STRING",
+            "value": "&fif"
+          },
+          {
+            "type": "STRING",
+            "value": "&fras"
+          },
+          {
+            "type": "STRING",
+            "value": "&frab"
+          },
+          {
+            "type": "STRING",
+            "value": "&s"
+          },
+          {
+            "type": "STRING",
+            "value": "&pf"
+          },
+          {
+            "type": "STRING",
+            "value": "&p"
+          },
+          {
+            "type": "STRING",
+            "value": "&epf"
+          },
+          {
+            "type": "STRING",
+            "value": "&ep"
+          },
+          {
+            "type": "STRING",
+            "value": "&raw"
+          },
+          {
+            "type": "STRING",
+            "value": "&var"
+          },
+          {
+            "type": "STRING",
+            "value": "&cl"
+          },
+          {
+            "type": "STRING",
+            "value": "&runi"
+          },
+          {
+            "type": "STRING",
+            "value": "&runc"
+          },
+          {
+            "type": "STRING",
+            "value": "&runs"
+          },
+          {
+            "type": "STRING",
+            "value": "&invk"
+          },
+          {
+            "type": "STRING",
+            "value": "&ims"
+          },
+          {
+            "type": "STRING",
+            "value": "&ap"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpl"
+          },
+          {
+            "type": "STRING",
+            "value": "&tlsl"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpa"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpc"
+          },
+          {
+            "type": "STRING",
+            "value": "&tlsc"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpsnb"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpaddr"
+          },
+          {
+            "type": "STRING",
+            "value": "&memfree"
+          },
+          {
+            "type": "STRING",
+            "value": "&exit"
+          },
+          {
+            "type": "STRING",
+            "value": "&sl"
+          },
+          {
+            "type": "STRING",
+            "value": "&camcap"
+          }
+        ]
+      }
+    },
+    "dyadic_system": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&fwa"
+          },
+          {
+            "type": "STRING",
+            "value": "&rs"
+          },
+          {
+            "type": "STRING",
+            "value": "&rb"
+          },
+          {
+            "type": "STRING",
+            "value": "&ru"
+          },
+          {
+            "type": "STRING",
+            "value": "&w"
+          },
+          {
+            "type": "STRING",
+            "value": "&gifs"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpsrt"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpswt"
+          },
+          {
+            "type": "STRING",
+            "value": "&tcpswt"
+          },
+          {
+            "type": "STRING",
+            "value": "&ffi"
+          }
+        ]
+      }
+    },
+    "triadic_system": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&memcpy"
+          }
+        ]
+      }
+    },
+    "monadic_glyph_modifier": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -562,7 +1004,7 @@
         ]
       }
     },
-    "dyadic_modifier": {
+    "dyadic_glyph_modifier": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -597,6 +1039,130 @@
           }
         ]
       }
+    },
+    "monadic_named_modifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "memo"
+          },
+          {
+            "type": "STRING",
+            "value": "comptime"
+          },
+          {
+            "type": "STRING",
+            "value": "quote"
+          },
+          {
+            "type": "STRING",
+            "value": "dump"
+          },
+          {
+            "type": "STRING",
+            "value": "spawn"
+          },
+          {
+            "type": "STRING",
+            "value": "pool"
+          }
+        ]
+      }
+    },
+    "dyadic_named_modifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "path"
+          }
+        ]
+      }
+    },
+    "monadic_system_modifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&rl"
+          },
+          {
+            "type": "STRING",
+            "value": "&ast"
+          }
+        ]
+      }
+    },
+    "monadic_modifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "monadic_glyph_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "monadic_named_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "monadic_system_modifier"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subscript"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "dyadic_modifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_glyph_modifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "dyadic_named_modifier"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "subscript"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "modifier_function": {
       "type": "CHOICE",
@@ -691,6 +1257,10 @@
     "identifier": {
       "type": "STRING",
       "value": "todo ident"
+    },
+    "subscript": {
+      "type": "PATTERN",
+      "value": "₋?[₀-₉]+"
     },
     "inline_function": {
       "type": "SEQ",
@@ -1053,7 +1623,7 @@
     },
     {
       "type": "PATTERN",
-      "value": "#[^\\n]*"
+      "value": "#[^\\n\\r]*"
     }
   ],
   "conflicts": [
